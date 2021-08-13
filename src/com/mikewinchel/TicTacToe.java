@@ -85,7 +85,8 @@ public class TicTacToe implements ActionListener {
 
         }
     }
-    //determines who goes first
+     
+
     public void firstTurn() {
 
         //pauses thread so title will display
@@ -105,7 +106,6 @@ public class TicTacToe implements ActionListener {
         }
     }
 
-    //checks if winning condition
     public void check(){
 
         //check X win conditions
@@ -242,9 +242,24 @@ public class TicTacToe implements ActionListener {
             oWins(2,4,6);
         }
 
+        //if no winner
+        if (
+              (!Objects.equals(buttons[0].getText(), "")) &&
+              (!Objects.equals(buttons[1].getText(), "")) &&
+              (!Objects.equals(buttons[2].getText(), "")) &&
+              (!Objects.equals(buttons[3].getText(), "")) &&
+              (!Objects.equals(buttons[4].getText(), "")) &&
+              (!Objects.equals(buttons[5].getText(), "")) &&
+              (!Objects.equals(buttons[6].getText(), "")) &&
+              (!Objects.equals(buttons[7].getText(), "")) &&
+              (!Objects.equals(buttons[8].getText(), ""))
+        ){
+            textField.setText("No Winner");
+            playAgain();
+        }
+
 }
 
-    //if X wins
     public void xWins(int a, int b, int c){
         //changes winning buttons to green
         buttons[a].setBackground(Color.green);
@@ -262,7 +277,6 @@ public class TicTacToe implements ActionListener {
 
     }
 
-    //if O wins
     public void oWins(int a, int b, int c){
         //changes winning buttons to green
         buttons[a].setBackground(Color.green);
@@ -280,8 +294,11 @@ public class TicTacToe implements ActionListener {
     }
 
     public void playAgain(){
-
-        int result = JOptionPane.showConfirmDialog(null,"Want to play again?","Tic-Tac-Toe",JOptionPane.YES_NO_OPTION);
+        //ask if player want to play again
+        int result = JOptionPane.showConfirmDialog(null,
+                                                   "Want to play again?",
+                                                   "Tic-Tac-Toe",
+                                                   JOptionPane.YES_NO_OPTION);
         
         if(result == JOptionPane.YES_OPTION){
             restart();
@@ -289,7 +306,6 @@ public class TicTacToe implements ActionListener {
         else endGame();
 
     }
-
 
     public void restart(){
         for (int i=0; i<9; i++){
