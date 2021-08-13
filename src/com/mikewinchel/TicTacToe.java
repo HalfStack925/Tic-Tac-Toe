@@ -46,6 +46,7 @@ public class TicTacToe implements ActionListener {
             buttonPanel.add(buttons[i]);
             buttons[i].setFont(new Font("MV Boli", Font.BOLD,120 ));
             buttons[i].setFocusable(false);
+            buttons[i].setBackground(Color.white);
             buttons[i].addActionListener(this);
         }
 
@@ -256,6 +257,8 @@ public class TicTacToe implements ActionListener {
             textField.setText("X Wins!");
         }
 
+        playAgain();
+
 
     }
 
@@ -272,5 +275,42 @@ public class TicTacToe implements ActionListener {
             textField.setText("O Wins!");
         }
 
+        playAgain();
+
+    }
+
+    public void playAgain(){
+
+        int result = JOptionPane.showConfirmDialog(null,"Want to play again?","Tic-Tac-Toe",JOptionPane.YES_NO_OPTION);
+        
+        if(result == JOptionPane.YES_OPTION){
+            restart();
+        }
+        else endGame();
+
+    }
+
+
+    public void restart(){
+        for (int i=0; i<9; i++){
+            buttons[i].setText("");
+            buttons[i].setEnabled(true);
+            buttons[i].setBackground(Color.white);
+
+            if(random.nextInt(2)==0){
+                player1Turn = true;
+                textField.setText("X Turn");
+            }
+            else{
+                player1Turn = false;
+                textField.setText("O Turn");
+            }
+
+        }
+    }
+
+    public void endGame(){
+       JOptionPane.showMessageDialog(null,"Thanks for playing!");
+       System.exit(0);
     }
 }
